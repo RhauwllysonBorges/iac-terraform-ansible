@@ -1,0 +1,15 @@
+---
+- name: Instalar IIS no Windows Server
+  hosts: servidore
+  gather_facts: no
+  vars_files:
+    - secrets.yml
+  tasks:
+    - name: Instalar IIS
+      win_feature:
+        name: Web-Server
+        state: present
+
+    - name: Reiniciar a máquina
+      win_reboot:
+        reboot_timeout: 600
